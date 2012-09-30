@@ -7,7 +7,11 @@ label {
 input {
     width: 40px;
 }
-
+.button{
+    cursor: pointer;
+    border: 1px solid;
+    padding: 2px;
+}
 li {
     padding-top: 10px;
     line-height: 6px;

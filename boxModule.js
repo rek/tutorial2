@@ -1,40 +1,54 @@
+/*jslint browser: true*/
+/*globals $, jQuery*/
+
 "use strict";
-
-//define an o2 namespace if it does not exist.
-if (!boxModule) {
-    var boxModule = {};
-}
-
-boxModule = (function ($) {
-    var boxName = 'main';
-    var public = {};
+var boxModule = (function ($) {
+  var _this, _dom, _boxName = 'main',
+    pub = {},
 
     changeSize = function (b) {
-        return b.css('width', $('#size').val());
-    }
+      b.css('width', $('#size').val());
+    },
 
     changeColor = function (b) {
-        return b.css('background', $('#color').val());
-    }
+      b.css('background', $('#color').val());
+    },
 
+    /**
+     * When the box is clicked, update the display and
+     * save the this object to the dom element
+     *
+     */
     addClickDisplay = function (d) {
-        d.click(function (e) {
-            $('#size_color').text($(e.target).css('background-color'));
-        });
-    }
+      d.click(function (e) {
+        $('#size_color').text($(e.target).css('background-color'));
+        $('#loaded').data('node', _this);
+      });
+    },
 
-    public.showBox = function () {
-        newDiv = $('<div class="box"></div>');
-        changeSize(newDiv).changeColor();
-        ;
-        $('#' + boxName).append(newDiv);
-        addClickDisplay(newDiv);
-    }
+    setup = function () {
+      changeSize(_dom);
+      changeColor(_dom);
+      addClickDisplay(_dom);
+      return this;
+    };
 
-    public.changeDiv = function (newName) {
-        boxName = newName;
-    }
+  pub.create = function () {
+    _dom = $('<div class="box"></div>');
+    _this = this;
+    $('#' + _boxName).append(_dom);
 
-    return public;
+    return setup();
+  };
+
+  pub.changeDiv = function (newName) {
+    _boxName = newName;
+  };
+
+  pub.del = function () {
+    _dom.remove();
+  };
+
+  return pub;
 
 }(jQuery));

@@ -1,87 +1,88 @@
 <html>
-    
-    <head>
-        <title>
-            Karkhana Jquery tutorial day 2
-        </title>
-        <!-- http://twitter.github.com/bootstrap/examples/fluid.html -->
-        <script type="text/javascript" src="
-      ../../narabazi/lib/jquery-1.8.0.min.js
-    ">
-        </script>
-        <script type="text/javascript" src="
-      boxModule.js
-    ">
-        </script>
-        <script type="text/javascript" src="
-      tutorial1.js
-    ">
-        </script>
-        <link rel="stylesheet" href="
+
+  <head>
+    <title>
+      Karkhana Jquery tutorial day 2
+    </title>
+    <!-- http://twitter.github.com/bootstrap/examples/fluid.html -->
+    <script src="../../narabazi/lib/jquery-1.8.0.min.js">
+
+    </script>
+    <script src="boxModule.js">
+
+    </script>
+    <script src="tutorial1.js">
+
+    </script>
+    <link rel="stylesheet" href="
       ../../narabazi/lib/bootstrap/css/bootstrap.css
     " />
-        <link rel="stylesheet" href="
-      tutorial1.css 
+    <link rel="stylesheet" href="
+      tutorial1.css
     " />
-    </head>
-    
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-                    <a class="brand" href="#">Tutorial 2</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active">
-                                <a id="add" href="#">Add</a>
-                            </li>
-                            <li>
-                                <label for="size">
-                                    Size
-                                </label>
-                                <input id="size" type="text" />
-                            </li>
-                            <li>
-                                <label for="color">
-                                    Colour
-                                </label>
-                                <input id="color" type="text" />
-                            </li>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-            </div>
+          <a class="brand" href="#">Tutorial 2</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a id="add" href="#">Add</a>
+              </li>
+              <li>
+                <label for="size">
+                  Size
+                </label>
+                <input id="size" type="text" />
+              </li>
+              <li>
+                <label for="color">
+                  Colour
+                </label>
+                <input id="color" type="text" />
+              </li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
         </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span3">
-                    <div class="well sidebar-nav">
-                        <h1 class="nav-header">
-                            Options
-                        </h1>
-                        <span id="size_color">
-                        </span>
-                    </div>
-                    <!--/.well -->
-                </div>
-                <!--/span-->
-                <div class="span9">
-                    <div class="hero-unit" id="main">
-                    </div>
-                    <!--/row-->
-                </div>
-                <!--/span-->
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <h1 class="nav-header">
+              Options
+            </h1>
+            <div id="loaded">
             </div>
-            <!--/row-->
+            <div id="size_color">
+            </div>
+            <div id="delete" class="button">
+              Delete Node
+            </div>
+          </div>
+          <!--/.well -->
         </div>
-        <!--/.fluid-container-->
-        
-        <body>
+        <!--/span-->
+        <div class="span9">
+          <div class="hero-unit" id="main">
+          </div>
+          <!--/row-->
+        </div>
+        <!--/span-->
+      </div>
+      <!--/row-->
+    </div>
+    <!--/.fluid-container-->
+  </body>
 
 </html>
