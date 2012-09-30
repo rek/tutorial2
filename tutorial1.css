@@ -1,27 +1,30 @@
-label
-{
-  display: inline;
-  padding-right: 8px;
-  padding-left: 8px;
+label {
+    display: inline;
+    padding-right: 8px;
+    padding-left: 8px;
 }
-input
-{
-  width: 40px;
+
+input {
+    width: 40px;
 }
-li
-{
-	padding-top: 10px;
-	line-height: 6px;
+
+li {
+    padding-top: 10px;
+    line-height: 6px;
 }
-.row-fluid
-{
-	margin-top: 55px;
+
+.row-fluid {
+    margin-top: 55px;
 }
-.box
-{
-	border: 5px dashed;
-	width: 100px;
-	height: 100px;
-	margin: 5px;
-	float: left;
+
+.box {
+    border: 5px dashed;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    float: left;
+}
+
+.hero-unit {
+    height: 100%;
 }

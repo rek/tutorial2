@@ -1,14 +1,40 @@
+"use strict";
+
 //define an o2 namespace if it does not exist.
-if(!boxModule){var boxModule = {};}
+if (!boxModule) {
+    var boxModule = {};
+}
 
-boxModule = (function($) {
-  div = 'main';
-  var me = {};
+boxModule = (function ($) {
+    var boxName = 'main';
+    var public = {};
 
-  me.show = function() {
+    changeSize = function (b) {
+        return b.css('width', $('#size').val());
+    }
 
- 	$('#'+div).append('<div class="box"></div>');
-  }
+    changeColor = function (b) {
+        return b.css('background', $('#color').val());
+    }
 
-  return me;
+    addClickDisplay = function (d) {
+        d.click(function (e) {
+            $('#size_color').text($(e.target).css('background-color'));
+        });
+    }
+
+    public.showBox = function () {
+        newDiv = $('<div class="box"></div>');
+        changeSize(newDiv).changeColor();
+        ;
+        $('#' + boxName).append(newDiv);
+        addClickDisplay(newDiv);
+    }
+
+    public.changeDiv = function (newName) {
+        boxName = newName;
+    }
+
+    return public;
+
 }(jQuery));
