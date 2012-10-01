@@ -6,22 +6,26 @@ $(function () {
   var cDiv = 'option_color',
     wDiv = 'option_width';
 
-  /**
-   * When delete is pressed
-   * get the node from the dom element
-   * and delete it where ever it is
-   */
-  $('#delete').on('click', function () {
-    var node = $('#loaded').data('node');
+
+  function resetForm() {
+    $('#color').val('');
+    $('#size').val('');
+    $('#size').focus();
+  }
+
+  function resetSidebar() {
+    $('#' + wDiv).text('');
+    $('#' + cDiv).text('');
+  }
+
+  function nodeAction(done, fail) {
+    var node = $('#' + $('#loaded').attr('box-id')).data('node');
     if (node) {
-      console.log('Node exists');
-      node.del();
-      $('#loaded').data('node', null);
-      resetSidebar();
+      done(node);
     } else {
-      console.log('Node is not loaded');
+      fail();
     }
-  });
+  }
 
   /**
    * When the add button is pressed
@@ -29,13 +33,50 @@ $(function () {
    * then create the box, setting some options
    */
   $('#add').on('click', function () {
-    resetForm();
-
-    boxModule.create({
+    var newBox = boxModule().create({
       'colorDiv': cDiv,
       'widthDiv': wDiv
     });
 
+    resetForm();
+  });
+
+  /**
+   * When delete is pressed
+   * get the node from the dom element
+   * and delete it where ever it is
+   */
+  $('#delete').on('click', function () {
+    nodeAction(function (node) {
+      console.log('Deleting');
+      node.del();
+      $('#loaded').removeData('node');
+      resetSidebar();
+    }, function () {
+      $(this).effect("shake", {
+        times: 2
+      }, 100);
+      console.log('Node is not loaded');
+    });
+  });
+
+  $('#shrink').on('click', function () {
+    nodeAction(function (node) {
+      node.dom().animate({
+        width: "20px"
+      }, "slow", "swing");
+      node.dom().animate({
+        height: "20px"
+      }, "slow", "swing");
+    });
+  });
+
+  $('#drop').on('click', function () {
+    nodeAction(function (node) {
+      node.dom().animate({
+        top: "200px"
+      }, "slow", "swing");
+    });
   });
 
   /**
@@ -57,17 +98,6 @@ $(function () {
       $('#add').click();
     }
   });
-
-  function resetForm() {
-    $('#color').val('');
-    $('#size').val('');
-    $('#size').focus();
-  }
-
-  function resetSidebar(){
-    $('#'+wDiv).text('');
-    $('#'+cDiv).text('');
-  }
 
   // on page load, focus the size field
   $('#size').focus();

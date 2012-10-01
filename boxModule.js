@@ -2,21 +2,25 @@
 /*globals $, jQuery*/
 
 "use strict";
-var boxModule = (function ($) {
-  var _this, _dom, _options = {
-    boxName: 'main',
-    widthDiv: '',
-    colorDiv: ''
-  },
-    pub = {},
+
+function boxModule(options) {
+
+  var pub = {},
+    dom = '',
+    id = '',
+    options = {
+      boxName: 'main',
+      widthDiv: '',
+      colorDiv: ''
+    },
 
     /**
-    * Loop through the css fields given
-    * and display them in the given divs
-    */
-    setDivValues = function (obj, vals) {
-      $.each(vals, function (key, value) {
-        $('#' + value).text(obj.css(key));
+     * Loop through the css fields given
+     * and display them in the given divs
+     */
+    setDivValues = function (object, array) {
+      $.each(array, function (key, value) {
+        $('#' + value).text(object.css(key));
       });
     },
 
@@ -29,44 +33,52 @@ var boxModule = (function ($) {
       d.click(function (e) {
         // display the values when clicked
         setDivValues($(e.target), {
-          'background-color': _options.colorDiv,
-          'width': _options.widthDiv
+          'background-color': options.colorDiv,
+          'width': options.widthDiv
         });
         // save this node to the dom
-        $('#loaded').data('node', _this);
+        $('#loaded').attr('box-id', e.target.id);
       });
     },
 
     setup = function () {
-      addClickDisplay(_dom);
-      _dom.css('width', $('#size').val());
-      _dom.css('background', $('#color').val());
+      addClickDisplay(dom);
 
-      return _this;
+      dom.css('width', $('#size').val());
+      dom.css('background', $('#color').val());
     };
 
-  pub.create = function (options) {
-    // make the object
-    _dom = $('<div class="box"></div>');
-    // save a self refrence of ourselves
-    _this = this;
+  pub.create = function (o) {
     // save the new options
-    pub.options(options);
+    $.extend(options, o);
+
+    // lets make an id for fun
+    id = 'i' + Math.floor((Math.random() * 9999) + 1);
+    // make the object
+    dom = $('<div class="box" id="' + id + '">' + id + '</div>');
+
+    // save a self refrence
+    dom.data('node', this);
+
     // and draw it on the page
-    $('#' + _options.boxName).append(_dom);
+    $('#' + options.boxName).append(dom);
 
     // set the drawn box to our options
-    return setup();
-  };
+    setup();
 
-  pub.options = function (options) {
-    $.extend(_options, options);
+    return this;
   };
 
   pub.del = function () {
-    _dom.remove();
-  };
+    dom.remove();
+  }
+
+  pub.dom = function () {
+    return dom;
+  }
+
+  pub.options = options;
 
   return pub;
 
-}(jQuery));
+};
